@@ -57,13 +57,25 @@ class Form extends Component
             try {
                 $crawler = GoutteFacade::request('GET', $this->link);
                 if ($this->selectFormat == 'texto plano') {
-                    $parrafo = $crawler->filter('.mw-parser-output > p')->eq(0)->text();
+                    if (!empty($crawler->filter('.mw-parser-output > p')->eq(0)->text())) {
+                        $parrafo = $crawler->filter('.mw-parser-output > p')->eq(0)->text();
+                    }elseif(!empty($crawler->filter('.mw-parser-output > p')->eq(1)->text())){
+                        $parrafo = $crawler->filter('.mw-parser-output > p')->eq(1)->text();
+                    }else{
+                        $parrafo = $crawler->filter('.mw-parser-output > p')->eq(2)->text();
+                    }
                     preg_match_all('/[+[0-9]+]/', $parrafo, $salida);
                     for ($i=0; $i < count($salida[0]); $i++) {
                         $parrafo = str_replace($salida[0][$i], "", $parrafo);
                     }
                 }else{
-                    $parrafo = $crawler->filter('.mw-parser-output > p')->eq(0)->html();
+                    if (!empty($crawler->filter('.mw-parser-output > p')->eq(0)->text())) {
+                        $parrafo = $crawler->filter('.mw-parser-output > p')->eq(0)->html();
+                    }elseif(!empty($crawler->filter('.mw-parser-output > p')->eq(1)->text())){
+                        $parrafo = $crawler->filter('.mw-parser-output > p')->eq(1)->html();
+                    }else{
+                        $parrafo = $crawler->filter('.mw-parser-output > p')->eq(2)->html();
+                    }
                     $patterndocumentLinks ='/<a\s+(?:[^"\'>]+|"[^"]*"|\'[^\']*\')*href=("[^"]+"|\'[^\']+\'|[^<>\s]+)/i'; 
                     preg_match_all($patterndocumentLinks, $parrafo, $salida, PREG_PATTERN_ORDER);
                     $hrefs = [];

@@ -75,20 +75,22 @@ class EditPost extends Component
             'titulo' => 'required',
         ]);
 
-        $rand = substr(str_shuffle('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'), 0, 16);
         Post::withTrashed()->where('id', $this->idPost)->update([
             'titulo' => $this->titulo,
             'descripcion' => $this->descripcion,
-            'imagen' => $rand.'-'.$this->idPost.'.jpeg',
         ]);
         
         if(!empty($this->photo)){
+            $rand = substr(str_shuffle('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'), 0, 16);
             $image_resize = Image::make($this->photo->getRealPath());
             $image_resize->resize(300, 300, function ($constraint) {
                 $constraint->aspectRatio();
                 $constraint->upsize();
             });
             $image_resize->save(public_path("img/".$rand.'-'.$this->idPost.'.jpeg'), 60, 'jpeg');
+            Post::withTrashed()->where('id', $this->idPost)->update([
+                'imagen' => $rand.'-'.$this->idPost.'.jpeg',
+            ]);
         }
 
         session()->flash('update', 'Cambios guardados');
