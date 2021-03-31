@@ -27,7 +27,7 @@ class EditPost extends Component
 
     public function closeEdit()
     {
-        $this->reset(['photo', 'imagen', 'titulo', 'descripcion']);
+        $this->reset(['photo', 'imagen', 'titulo', 'descripcion','idPost']);
         $this->emit('wipeContentEdit');
     }
 

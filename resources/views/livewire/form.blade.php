@@ -15,7 +15,7 @@
                         Automático
                     </div>
                 </div>
-                <button @click="open = false" type="button" class="absolute right-2 self-center mx-2 my-1 md:mx-0 inline-flex justify-center py-2 px-3 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                <button @click="open = false" onclick="allowScroll()" type="button" class="absolute right-2 self-center mx-2 my-1 md:mx-0 inline-flex justify-center py-2 px-3 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                     <em class="fas fa-times"></em>
                 </button>
             </div>
@@ -52,6 +52,9 @@
                                                 <div class="mt-1 flex rounded-md shadow-sm">
                                                     <input type="text" name="link" id="link" class="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-md sm:text-sm border-gray-300" placeholder="https://es.wikipedia.org/wiki/xxx" wire:model="link" wire:keyup.300ms="updateLink">
                                                 </div>
+                                                <p class="mt-2 text-sm text-red-500">
+                                                    @error('link') <span>{{ $message }}</span> @enderror
+                                                </p>
                                             </div>
                                         </div>
                                         <div class="mt-2">
@@ -110,7 +113,7 @@
                                         <label class="block text-sm font-medium text-gray-700">
                                             Imagen
                                         </label>
-                                        <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+                                        <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 rounded-md">
                                             <div class="space-y-1 text-center">
                                                 @if (!empty($this->photo))
                                                     <img class="mx-auto h-12 w-12" src="{{ $photo->temporaryUrl() }}" alt="">
@@ -171,7 +174,7 @@
                         </div>
                     </form>
                     </div>
-                    <div class="md:col-span-1">
+                    <div class="md:col-span-1" wire:loading.class="hidden" wire:target="updateLink, updateFormat" >
                         <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
                             <h3 class="text-4xl font-bold leading-6 text-gray-900">Preview</h3>
                             <div>
@@ -200,6 +203,11 @@
                                     @endphp
                                 </p>
                             </div>
+                        </div>
+                    </div>
+                    <div wire:loading.remove.class="hidden" wire:target="updateLink, updateFormat" class="justify-center flex hidden w-full">
+                        <div class="lds-ellipsis">
+                            <div></div><div></div><div></div><div></div>
                         </div>
                     </div>
                 </div>

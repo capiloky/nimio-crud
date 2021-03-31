@@ -132,6 +132,12 @@ class Form extends Component
             session()->flash('descripcion', 'La descripcion es obligatoria.');
         }
 
+        if ($this->select == 2) {
+            $this->validate([
+                'link' => 'required',
+            ]);
+        }
+        
         if (empty($this->autoImage)) {
             $this->validate([
                 'photo' => 'required|image|max:1024',

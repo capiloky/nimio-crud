@@ -26,7 +26,7 @@ switch ($width) {
 @endphp
 
 <div class="relative" x-data="{ open: false }">
-    <div @click="open = ! open">
+    <div @click="open = ! open" onclick="disallowScroll()">
         {{ $trigger }}
     </div>
 
@@ -40,7 +40,7 @@ switch ($width) {
         class="fixed flex w-screen h-screen inset-0 z-50 bg-gray-900 bg-opacity-25"
         style="display: none;">
 
-        <div class="rounded-md self-center ring-1 ring-black ring-opacity-5 max-w-7xl overflow-y-auto max-h-screen max-w-screen w-screen md:w-4/5 h-screen md:h-4/5 mx-auto shadow-xl bg-white">
+        <div class="self-center ring-1 ring-black ring-opacity-5 max-w-screen overflow-y-auto max-h-screen max-w-screen w-screen md:w-full h-screen md:h-full mx-auto shadow-xl bg-white">
             {{ $content }}
         </div>
 

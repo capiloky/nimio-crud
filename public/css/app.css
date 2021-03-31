@@ -32823,6 +32823,10 @@ a{
   color: #2563eb !important;
 }
 
+.scale1005{
+  scale: 1.005 !important;
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;

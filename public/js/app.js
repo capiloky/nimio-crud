@@ -3814,12 +3814,6 @@ function scrollFunction() {
   }
 }
 
-function goUp() {
-  $('html,body').animate({
-    scrollTop: 0
-  }, 100);
-}
-
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":
@@ -21439,4 +21433,11 @@ process.umask = function() { return 0; };
 
 function goUp(){
   $('html,body').animate({ scrollTop: 0 }, 100);
+}
+
+function allowScroll(){
+  $('body').css('overflow', 'auto')
+}
+function disallowScroll(){
+  $('body').css('overflow', 'hidden')
 }

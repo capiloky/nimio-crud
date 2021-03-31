@@ -14,9 +14,14 @@
 
     <div class="rounded-md self-center ring-1 ring-black ring-opacity-5 max-w-7xl overflow-y-auto max-h-screen max-w-screen w-screen md:w-3/5 h-screen md:h-4/5 mx-auto shadow-xl bg-white">
         <div class="w-full h-14 py-2 flex relative sticky top-0 left-0 bg-white shadow px-2">
-            <button @click="open = false" type="button" class="absolute right-2 self-center mx-2 my-1 md:mx-0 inline-flex justify-center py-2 px-3 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+            <button wire:click="closeView" @click="open = false" onclick="allowScroll()" type="button" class="absolute right-2 self-center mx-2 my-1 md:mx-0 inline-flex justify-center py-2 px-3 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                 <em class="fas fa-times"></em>
             </button>
+        </div>
+        <div wire:loading.remove.class="hidden" class="justify-center flex hidden w-full">
+            <div class="lds-ellipsis">
+                <div></div><div></div><div></div><div></div>
+            </div>
         </div>
         @if(!empty($post))
             <div class="md:col-span-1" wire:loading.class="hidden">
@@ -38,10 +43,5 @@
                 </div>
             </div>
         @endif
-        <div wire:loading class="justify-center flex w-full flex md:col-span-1">
-            <div class="lds-ellipsis">
-                <div></div><div></div><div></div><div></div>
-            </div>
-        </div>
     </div>
 </div>

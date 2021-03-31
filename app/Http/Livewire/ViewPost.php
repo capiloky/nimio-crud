@@ -11,6 +11,11 @@ class ViewPost extends Component
 
     protected $listeners = ['updateIdPost'];
 
+    public function closeView()
+    {
+        $this->reset(['idPost']);
+    }
+
     public function updateIdPost($idPost)
     {
         $this->idPost = $idPost;

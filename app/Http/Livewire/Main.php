@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Post;
+use Carbon\Carbon;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Livewire\LoadPosts;
@@ -16,6 +17,18 @@ class Main extends Component
     public $ids = [];
     public $order = 'DESC';
     public $orderBy = "id";
+    public $sortDate;
+    public $lastDate;
+    public $firstDate;
+
+    protected $queryString = [
+        'firstDate' => ['except' => ''], 
+        'lastDate' => ['except' => ''], 
+        'sortDate' => ['except' => ''], 
+        'orderBy' => ['except' => ''], 
+        'order' => ['except' => ''], 
+        'q' => ['except' => ''], 
+    ];
 
     use WithPagination;
 
@@ -81,6 +94,12 @@ class Main extends Component
         Post::onlyTrashed()->where('id', $idPost)->restore();
         $this->check = false;
     }
+
+    public function updateDate($days)
+    {
+        $this->sortDate = $days;
+        $this->reset(['lastDate', 'firstDate']);
+    }
     
     public function order($orderBy,$order)
     {
@@ -106,6 +125,15 @@ class Main extends Component
     {
         $posts = Post::query();
         $posts = $posts->withTrashed();
+        if (!empty($this->lastDate) && !empty($this->firstDate)) {
+            $posts = $posts->whereBetween('created_at', [Carbon::createFromDate($this->firstDate)->toDateString(), Carbon::createFromDate($this->lastDate)->addDays(1)->toDateString()]);
+        }elseif (!empty($this->lastDate)) {
+            $posts = $posts->whereDate('created_at', '=', $this->lastDate);
+        }elseif (!empty($this->firstDate)) {
+            $posts = $posts->whereDate('created_at', '=', $this->firstDate);
+        }elseif(!empty($this->sortDate)){
+            $posts = $posts->where('created_at','>=', Carbon::now()->subDays($this->sortDate));
+        }
         if(!empty($this->q)){
             $compare = explode(":", $this->q);
             if (count($compare) > 1) {
@@ -163,6 +191,7 @@ class Main extends Component
                 });
             }
         }
+        
         $posts = $posts->orderBy($this->orderBy, $this->order);
         $posts = $posts->paginate($this->perPage, ['*'], null, $this->page);
         $this->reset(['ids']);
