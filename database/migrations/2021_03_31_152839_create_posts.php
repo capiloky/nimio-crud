@@ -17,6 +17,7 @@ class CreatePosts extends Migration
             $table->id()->unique();
             $table->longText('titulo');
             $table->longText('descripcion');
+            $table->longText('imagen');
             $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
         });

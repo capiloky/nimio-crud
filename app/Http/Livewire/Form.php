@@ -117,8 +117,8 @@ class Form extends Component
         }
 
         $this->validateOnly($propertyName, [
-            'photo' => 'image|max:1024',
-            'titulo'       =>   'required',
+            'photo' => 'image',
+            'titulo' => 'required',
         ]);
     }
 
@@ -140,7 +140,7 @@ class Form extends Component
         
         if (empty($this->autoImage)) {
             $this->validate([
-                'photo' => 'required|image|max:1024',
+                'photo' => 'required|image',
             ]);
         }
 

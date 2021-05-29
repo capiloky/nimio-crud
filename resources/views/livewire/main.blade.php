@@ -45,7 +45,7 @@
 
                             </table>
 
-                            <div class="justify-center flex w-full flex hidden" wire:loading.remove.class="hidden" wire:target="reload, q, order, orderBy">
+                            <div class="justify-center flex w-full flex hidden" wire:loading.remove.class="hidden" wire:target="reload, q, order, orderBy, perPage, lastDate, firstDate, updateDate, updatePerPage">
                                 <div class="lds-ellipsis">
                                     <div></div>
                                     <div></div>

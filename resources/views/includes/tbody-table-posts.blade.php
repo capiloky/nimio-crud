@@ -1,4 +1,4 @@
-<tbody class="bg-white divide-y divide-gray-200" wire:loading.class="hidden" wire:target="reload, q, order, orderBy">
+<tbody class="bg-white divide-y divide-gray-200" wire:loading.class="hidden" wire:target="reload, q, order, orderBy, perPage, lastDate, firstDate, updateDate, updatePerPage">
     @foreach ($posts as $post)
         <tr class="cursor-pointer z-0 overflow-hidden @if(array_search($post->id, $keys) !== false) bg-indigo-100 @else hover:bg-indigo-100 @endif hover:border-0">
             <td class="px-6 py-4 whitespace-nowrap" @if(array_search($post->id, $keys) !== false) wire:click="unCheck({{ $post->id }})" @else wire:click="check({{ $post->id }})" @endif>

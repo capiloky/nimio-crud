@@ -14,7 +14,6 @@
         <link rel="stylesheet" href="{{ asset('css/editor.css') }}">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.css">
         @livewireStyles
 
         <!-- Scripts -->
@@ -22,7 +21,6 @@
         <script src="{{ mix('js/app.js') }}" defer></script>
         <script src="https://cdn.tiny.cloud/1/wnf6ziopcaxr3t44auho4pcvkw1t38aiwh8igyn1whj4d82r/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
         <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js" defer></script>
-        <script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
     </head>
     <body class="font-sans antialiased">
         @livewireScripts

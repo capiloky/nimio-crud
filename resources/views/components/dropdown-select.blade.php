@@ -1,4 +1,4 @@
-<div class="relative mt-1" x-data="{ open: false }" @click.away="open = false" @close.stop="open = false" >
+<div class="relative mt-1" x-data="{ open: false }" @click.away="open = false" @close.stop="open = false">
     <button @click="open = ! open" type="button" class="relative w-full cursor-pointer bg-white border capitalize border-gray-300 rounded-md shadow-sm pl-3 pr-14 py-2 text-left cursor-default focus:outline-none focus:ring-indigo-500 focus:ring-2 sm:text-sm" aria-haspopup="listbox" aria-expanded="true" aria-labelledby="listbox-label">
         {{ $trigger }}
     </button>

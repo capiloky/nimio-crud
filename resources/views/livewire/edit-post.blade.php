@@ -18,7 +18,7 @@
                 <em class="fas fa-times"></em>
             </button>
         </div>
-        <div class="mt-5 md:mt-0 md:col-span-2 md:border-r-2 md:border-b-0 border-b-2 @if(empty($this->idPost)) hidden @endif" wire:loading.class="hidden" wire:target="edit, idPost">
+        <div class="mt-5 md:mt-0 md:col-span-2 @if(empty($this->idPost)) hidden @endif" wire:loading.class="hidden" wire:target="edit, idPost">
             <div class="w-full">
                 @if (session()->has('update'))
                     <div class="max-w-full w-full px-4 mt-2">
@@ -54,9 +54,6 @@
                                                 <input id="photo2" name="photo2" type="file" class="sr-only" wire:model="photo">
                                             </label>
                                         </div>
-                                        <p class="text-xs text-gray-500">
-                                            PNG, JPG, GIF up to 10MB
-                                        </p>
                                     </div>
                                 </div>
                                 <p class="mt-2 text-sm text-red-500">
@@ -78,6 +75,7 @@
                             <div wire:key="8927349824">
                                 <div class="mt-1" wire:ignore>
                                     <textarea id="edit" name="edit" rows="3" class="edit shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border-gray-300 rounded-md"></textarea>
+                                    <input name="image" type="file" id="upload" class="hidden" onchange="">
                                 </div>
                             </div>
                             <p class="mt-2 text-sm text-red-500">

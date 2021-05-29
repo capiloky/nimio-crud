@@ -130,9 +130,6 @@
                                                         <input id="photo" name="photo" type="file" class="sr-only" wire:model="photo" accept="image/x-png,image/jpeg" />
                                                     </label>
                                                 </div>
-                                                <p class="text-xs text-gray-500">
-                                                    PNG, JPG, GIF up to 10MB
-                                                </p>
                                             </div>
                                         </div>
                                         <p class="mt-2 text-sm text-red-500">
@@ -154,6 +151,7 @@
                                     <div wire:key="8927349823">
                                         <div class="mt-1" wire:ignore>
                                             <textarea id="editor" name="editor" rows="3" class="editor shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border-gray-300 rounded-md"></textarea>
+                                            <input name="image" type="file" id="upload" class="hidden" onchange="">
                                         </div>
                                     </div>
                                     <p class="mt-2 text-sm text-red-500">

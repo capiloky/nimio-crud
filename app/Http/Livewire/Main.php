@@ -10,6 +10,8 @@ use Livewire\LoadPosts;
 
 class Main extends Component
 {
+    use WithPagination;
+
     public $reload;
     public $q;
     public $perPage = 15;
@@ -29,8 +31,6 @@ class Main extends Component
         'order' => ['except' => ''], 
         'q' => ['except' => ''], 
     ];
-
-    use WithPagination;
 
     protected $listeners = ['reload'];
 
